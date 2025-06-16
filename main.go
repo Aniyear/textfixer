@@ -1,30 +1,33 @@
 package main
 
 import (
-    "fmt"
-    "os"
-    "textfixer/processor"
+	"fmt"
+	processor "go-reloaded/processor"
+	"os"
 )
 
 func main() {
-    if len(os.Args) != 3 {
-        fmt.Println("Usage: go run . input.txt output.txt")
-        return
-    }
+	if len(os.Args) != 3 {
+		return
+	}
 
-    inputFile := os.Args[1]
-    outputFile := os.Args[2]
+	inputFile := os.Args[1]
+	outputFile := os.Args[2]
 
-    inputData, err := os.ReadFile(inputFile)
-    if err != nil {
-        fmt.Printf("Failed to read input file: %v\n", err)
-        return
-    }
+	content, err := os.ReadFile(inputFile)
+	if err != nil {
+		fmt.Println("Ошибка при чтении файла:", err)
+		return
+	}
+	text := string(content)
 
-    outputData := processor.ProcessText(string(inputData))
+	processedText := processor.ProcessText(text)
 
-    err = os.WriteFile(outputFile, []byte(outputData), 0644)
-    if err != nil {
-        fmt.Printf("Failed to write output file: %v\n", err)
-    }
+	err = os.WriteFile(outputFile, []byte(processedText), 0o644)
+	if err != nil {
+		fmt.Println("Ошибка при записи файла:", err)
+		return
+	}
+
+	fmt.Println("Job is done. You can check the file named", outputFile)
 }
