@@ -29,7 +29,7 @@ func ProcessText(text string) string {
 
 
 func ControlCheck(text string) string {
-	if strings.Contains(text, "(cap)") || strings.Contains(text, "(up)") || strings.Contains(text, "(low)") {
+	if strings.Contains(text, "(cap)") || strings.Contains(text, "(up)") || strings.Contains(text, "(low)") || strings.Contains(text, "(hex)") || strings.Contains(text, "(bin)") {
 		return ProcessText(text)
 	}
 

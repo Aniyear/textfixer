@@ -21,17 +21,35 @@ func ProcessCommands(words []string) []string {
 				num := 1 // по умолчанию одно слово
 
 				// если указано число — парсим его
+				// if match[2] != "" {
+				// 	bigNum := new(big.Int)
+				// 	_, ok := bigNum.SetString(match[2], 10)
+				// 	if ok && bigNum.Sign() > 0 {
+				// 		maxRange := big.NewInt(int64(i))
+				// 		if bigNum.Cmp(maxRange) == 1 {
+				// 			bigNum = maxRange
+				// 		}
+				// 		num = int(bigNum.Int64())
+				// 	}
+				// }
+
 				if match[2] != "" {
 					bigNum := new(big.Int)
 					_, ok := bigNum.SetString(match[2], 10)
-					if ok && bigNum.Sign() > 0 {
-						maxRange := big.NewInt(int64(i))
-						if bigNum.Cmp(maxRange) == 1 {
-							bigNum = maxRange
-						}
+					if ok {
 						num = int(bigNum.Int64())
+						if num <= 0 {
+							words = append(words[:i], words[i+1:]...)
+							i--
+							continue
+						}
+						maxRange := i
+						if num > maxRange {
+							num = maxRange
+						}
 					}
 				}
+
 
 				start := i - num
 				if start < 0 {

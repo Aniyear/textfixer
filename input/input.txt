@@ -335,7 +335,6 @@ a a a a (up,-2)
 
 it's my choice "a"'
 
-aaa (HEX(low))
 
 
 harold wilson (cap, 2) : ' I am a optimist ,but,, ,a,, optimist who carries a raincoat . '
@@ -354,3 +353,8 @@ a AND
 
 
 An APPLE
+
+
+aaa (HEX(low))
+
+A (HEX (low))
